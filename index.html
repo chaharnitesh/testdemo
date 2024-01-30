@@ -36,7 +36,15 @@
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         // Handle successful response from the backend
-                        console.log("Backend Response:", xhr.responseText);
+                        const responseData = JSON.parse(xhr.responseText);
+                        console.log("Backend Response:", responseData);
+
+                        // Display success or error message to the user
+                        if (responseData.message) {
+                            alert(responseData.message);
+                        } else if (responseData.Error) {
+                            alert(responseData.Error);
+                        }
                     } else {
                         // Handle errors from the backend
                         console.error("Error fetching data from backend. Status:", xhr.status);
